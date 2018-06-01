@@ -9,9 +9,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        resConfigs "zh"
+        resConfigs "xxhdpi"
     }
     buildTypes {
-        release {
+        debug {
             minifyEnabled true
             shrinkResources true
             zipAlignEnabled true
