@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FuckVivo</string>
+    <string name="label_service_name">自动输入安装密码</string>
+    <string name="service_desc">自动填充安装密码，并点击确定和继续安装按钮，完成安装后打开app</string>
+    <string name="hint_password">输入vivo账号的密码</string>
+    <string name="toast_save_success">保存成功</string>
+</resources>
