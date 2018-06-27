@@ -9,7 +9,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InstallerHelperService extends AccessibilityService {
+public class InstallHelperService extends AccessibilityService {
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         AccessibilityNodeInfo rootNode = getRootInActiveWindow();
@@ -21,8 +21,9 @@ public class InstallerHelperService extends AccessibilityService {
             if (!TextUtils.isEmpty(password)) {
                 fillPassword(rootNode, password);
             }
+        } else if (event.getPackageName().equals("com.android.packageinstaller")) {
+            installConfirm(rootNode);
         }
-        findAndClickView(rootNode);
     }
 
     private void fillPassword(AccessibilityNodeInfo rootNode, String password) {
@@ -36,11 +37,15 @@ public class InstallerHelperService extends AccessibilityService {
                     .ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, password);
             editText.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, arguments);
         }
+
+        List<AccessibilityNodeInfo> nodeInfoList =rootNode.findAccessibilityNodeInfosByText("确定");
+        for (AccessibilityNodeInfo nodeInfo : nodeInfoList) {
+            nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+        }
     }
 
-    private void findAndClickView(AccessibilityNodeInfo rootNode) {
+    private void installConfirm(AccessibilityNodeInfo rootNode) {
         List<AccessibilityNodeInfo> nodeInfoList = new ArrayList<>();
-        nodeInfoList.addAll(rootNode.findAccessibilityNodeInfosByText("确定"));
         nodeInfoList.addAll(rootNode.findAccessibilityNodeInfosByText("继续安装"));
         nodeInfoList.addAll(rootNode.findAccessibilityNodeInfosByText("安装"));
         nodeInfoList.addAll(rootNode.findAccessibilityNodeInfosByText("打开"));

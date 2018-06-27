@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mEditText = findViewById(R.id.et_password);
+        startActivity(new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS));
     }
 
     @Override
@@ -36,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openSettings(View view) {
-        Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS);
-        startActivity(intent);
+        startActivity(new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS));
     }
 }
