@@ -38,7 +38,8 @@ public class InstallHelperService extends AccessibilityService {
             editText.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, arguments);
         }
 
-        List<AccessibilityNodeInfo> nodeInfoList =rootNode.findAccessibilityNodeInfosByText("确定");
+        List<AccessibilityNodeInfo> nodeInfoList = rootNode.findAccessibilityNodeInfosByText("确定");
+
         for (AccessibilityNodeInfo nodeInfo : nodeInfoList) {
             nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
         }
@@ -49,6 +50,12 @@ public class InstallHelperService extends AccessibilityService {
         nodeInfoList.addAll(rootNode.findAccessibilityNodeInfosByText("继续安装"));
         nodeInfoList.addAll(rootNode.findAccessibilityNodeInfosByText("安装"));
         nodeInfoList.addAll(rootNode.findAccessibilityNodeInfosByText("打开"));
+        nodeInfoList.addAll(rootNode.findAccessibilityNodeInfosByText("Continue installation"));
+        nodeInfoList.addAll(rootNode.findAccessibilityNodeInfosByText("Install"));
+        nodeInfoList.addAll(rootNode.findAccessibilityNodeInfosByText("Open"));
+        nodeInfoList.addAll(rootNode.findAccessibilityNodeInfosByText("OK"));
+
+
 
         for (AccessibilityNodeInfo nodeInfo : nodeInfoList) {
             nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
